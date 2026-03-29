@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+set -o xtrace -o nounset -o pipefail -o errexit
 
-autoreconf -fi
-./configure --prefix=$PREFIX
-make
-make check
-make install
+meson ${MESON_ARGS} --wrap-mode=nofallback build
+meson compile -C build -v
+meson test -C build
+meson install -C build

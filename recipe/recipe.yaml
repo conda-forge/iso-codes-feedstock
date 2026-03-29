@@ -1,0 +1,39 @@
+schema_version: 1
+
+context:
+  version: "4.20.1"
+
+package:
+  name: iso-codes
+  version: ${{ version }}
+
+source:
+  url: https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/v${{ version }}/iso-codes-v${{ version }}.tar.gz
+  sha256: 2d7d9f6084ab9ce6c534ce71a3dd5144b6e474f3c97616459a88f73f44a64bff
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - meson
+    - ninja
+    - pkg-config
+    - python >=3.10
+
+tests:
+  - script:
+      - test -f ${PREFIX}/share/xml/iso-codes/iso_3166.xml
+
+about:
+  license: LGPL-2.1-or-later
+  license_file: LICENSES/LGPL-2.1-or-later.txt
+  summary: This project provides lists of various ISO standards (countries, languages, language scripts, and currency names) in one place. It also provides their translations in gettext .po format.
+  homepage: https://salsa.debian.org/iso-codes-team/iso-codes
+
+extra:
+  recipe-maintainers:
+    - izahn
