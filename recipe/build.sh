@@ -2,8 +2,7 @@
 
 set -o xtrace -o nounset -o pipefail -o errexit
 
-autoreconf --force --verbose --install
-./configure --prefix=$PREFIX
-make
-make check
-make install
+meson ${MESON_ARGS} --wrap-mode=nofallback build
+meson compile -C build -v
+meson test -C build
+meson install -C build
