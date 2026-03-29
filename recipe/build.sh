@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+set -o xtrace -o nounset -o pipefail -o errexit
 
-autoreconf -fi
+autoreconf --force --verbose --install
 ./configure --prefix=$PREFIX
 make
 make check

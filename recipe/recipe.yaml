@@ -1,40 +1,41 @@
-{% set name = "iso-codes" %}
-{% set version = "4.4" %}
+schema_version: 1
+
+context:
+  version: "4.4"
 
 package:
-  name: {{ name }}
-  version: {{ version }}
+  name: iso-codes
+  version: ${{ version }}
 
 source:
-  url: https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/iso-codes-{{ version }}/iso-codes-iso-codes-{{ version }}.tar.gz
+  url: https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/v${{ version }}/iso-codes-v${{ version }}.tar.gz
   sha256: ff7c0d28975dc83e8975c1c815d3bb7371a4130ae90e3dc93508de2bf1939010
 
 build:
   number: 0
-  skip: true  # [not linux]
+  skip: win
 
 requirements:
   build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
     - make
-    - python
     - pkg-config
     - autoconf
     - automake
-    - libtool
-    - {{ compiler('c') }}
+    - python >=3.10
   host:
-  run:
+    - libtool
 
-test:
-  commands:
-    - test -f ${PREFIX}/share/xml/iso-codes/iso_3166.xml
+tests:
+  - script:
+      - test -f ${PREFIX}/share/xml/iso-codes/iso_3166.xml
 
 about:
-  home: https://salsa.debian.org/iso-codes-team/iso-codes
   license: LGPL-2.1-only
-  license_family: GPL2
   license_file: COPYING
   summary: This project provides lists of various ISO standards (countries, languages, language scripts, and currency names) in one place. It also provides their translations in gettext .po format.
+  homepage: https://salsa.debian.org/iso-codes-team/iso-codes
 
 extra:
   recipe-maintainers:
