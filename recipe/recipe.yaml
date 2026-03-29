@@ -29,8 +29,8 @@ tests:
       - test -f ${PREFIX}/share/xml/iso-codes/iso_3166.xml
 
 about:
-  license: LGPL-2.1-only
-  license_file: COPYING
+  license: LGPL-2.1-or-later
+  license_file: LICENSES/LGPL-2.1-or-later.txt
   summary: This project provides lists of various ISO standards (countries, languages, language scripts, and currency names) in one place. It also provides their translations in gettext .po format.
   homepage: https://salsa.debian.org/iso-codes-team/iso-codes
 
