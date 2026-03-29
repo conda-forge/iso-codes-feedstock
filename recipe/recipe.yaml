@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/v${{ version }}/iso-codes-v${{ version }}.tar.gz
-  sha256: ff7c0d28975dc83e8975c1c815d3bb7371a4130ae90e3dc93508de2bf1939010
+  sha256: 2d7d9f6084ab9ce6c534ce71a3dd5144b6e474f3c97616459a88f73f44a64bff
 
 build:
   number: 0
